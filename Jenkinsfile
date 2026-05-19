@@ -1,48 +1,58 @@
-pipeline {
-    agent any  // Use any available agent
+pipeline 
+{
+    agent any
 
-    tools {
-        gradle 'gradle'  // Ensure this matches the name configured in Jenkins
+    tools 
+    {
+        gradle 'Gradle'
         jdk 'jdk'
     }
-    stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'master', url: 'https://github.com/RahilMasood/DevOpsLab_Gradle.git'
+    
+    stages 
+    {
+        stage('Checkout') 
+        {
+            steps 
+            {
+                git branch: 'master', url: 'https://github.com/RahilMasood/1BI23CS164_FinalTest.git'
             }
         }
 
-        stage('Build') {
-            steps {
-                sh 'gradle build'  // Run Gradle build
+        stage('Build') 
+        {
+            steps 
+            {
+                sh 'gradle build'
             }
         }
 
-        stage('Test') {
-            steps {
-                sh 'gradle test'  // Run unit tests
+        stage('Test') 
+        {
+            steps 
+            {
+                sh 'gradle test'
             }
         }
 
-        
-        
-       
-        stage('Run Application') {
-            steps {
-                // Start the JAR application
+        stage('Run Application') 
+        {
+            steps 
+            {
                 sh 'gradle run'
             }
         }
-
-        
     }
 
-    post {
-        success {
-            echo 'Build and deployment successful!'
+    post 
+    {
+        success 
+        {
+            echo 'Successful!'
         }
-        failure {
-            echo 'Build failed!'
+        
+        failure 
+        {
+            echo 'Failed!'
         }
     }
 }
